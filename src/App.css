@@ -1,17 +1,18 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    overflow-x: hidden;
+  overflow: hidden;
 }
 
 canvas#canvas {
-    width: 100vw;
-    height: 100vh;
-    display: block;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(255, 0, 0);
 }
