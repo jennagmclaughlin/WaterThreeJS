@@ -24,10 +24,7 @@ function App() {
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement); // attach the renderer to the DOM
-
-    // light blue background color
-    scene.background = new THREE.Color(0x800851); //light blue
+    document.body.appendChild(renderer.domElement); // putting renderer in document
 
     // ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
