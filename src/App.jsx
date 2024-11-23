@@ -49,46 +49,46 @@ function App() {
     scene.add(ambientLight);
 
     const dirLight = new THREE.DirectionalLight( 0xffffff, 0 );
-				dirLight.color.setHSL( 0.1, 1, 0.95 );
-				dirLight.position.set( -1, 1.75, 1 );
-				dirLight.position.multiplyScalar( 30 );
-				scene.add( dirLight );
+    dirLight.color.setHSL( 0.1, 1, 0.95 );
+    dirLight.position.set( -1, 1.75, 1 );
+    dirLight.position.multiplyScalar( 30 );
+    scene.add( dirLight );
 
-				dirLight.castShadow = true;
+    dirLight.castShadow = true;
 
-				dirLight.shadow.mapSize.width = 2048;
-				dirLight.shadow.mapSize.height = 2048;
+    dirLight.shadow.mapSize.width = 2048;
+    dirLight.shadow.mapSize.height = 2048;
 
-        const d = 50;
+    const d = 50;
 
-				dirLight.shadow.camera.left = - d;
-				dirLight.shadow.camera.right = d;
-				dirLight.shadow.camera.top = d;
-				dirLight.shadow.camera.bottom = - d;
+    dirLight.shadow.camera.left = - d;
+    dirLight.shadow.camera.right = d;
+    dirLight.shadow.camera.top = d;
+    dirLight.shadow.camera.bottom = - d;
 
-				dirLight.shadow.camera.far = 500;
-				dirLight.shadow.bias = -0.0001;
+    dirLight.shadow.camera.far = 500;
+    dirLight.shadow.bias = -0.0001;
 
-				const uniforms = {
-					'topColor': { value: new THREE.Color( 0x0077ff ) },
-					'bottomColor': { value: new THREE.Color( 0xffffff ) },
-					'offset': { value: 33 },
-					'exponent': { value: 0.5 }
-				};
-				uniforms[ 'topColor' ].value.copy( hemisphere.color );
+    const uniforms = {
+      'topColor': { value: new THREE.Color( 0x0077ff ) },
+      'bottomColor': { value: new THREE.Color( 0xffffff ) },
+      'offset': { value: 33 },
+      'exponent': { value: 0.5 }
+    };
+    uniforms[ 'topColor' ].value.copy( hemisphere.color );
 
-				scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
+    scene.fog.color.copy( uniforms[ 'bottomColor' ].value );
 
-				const skyGeo = new THREE.SphereGeometry( 300, 100, 100 );
-				const skyMat = new THREE.ShaderMaterial( {
-					uniforms: uniforms,
-					vertexShader: vertexShaderSky,
-					fragmentShader: fragmentShaderSky,
-					side: THREE.BackSide
-				} );
+    const skyGeo = new THREE.SphereGeometry( 300, 100, 100 );
+    const skyMat = new THREE.ShaderMaterial( {
+      uniforms: uniforms,
+      vertexShader: vertexShaderSky,
+      fragmentShader: fragmentShaderSky,
+      side: THREE.BackSide
+    } );
 
-				const sky = new THREE.Mesh( skyGeo, skyMat );
-				scene.add(sky);
+    const sky = new THREE.Mesh( skyGeo, skyMat );
+    scene.add(sky);
 
     // plane geometry
     const planeGeometry = new THREE.PlaneGeometry(100, 100, 32, 32); // Added more segments for smoother wave
