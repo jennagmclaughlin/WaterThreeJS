@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
-
 import * as THREE from 'three';
+
 import vertexShaderSky from './shaders/sky/vertexShader.glsl';
 import fragmentShaderSky from './shaders/sky/fragmentShader.glsl';
+
+import vertexShaderWater from './shaders/water/vertexShader.glsl';
+import fragmentShaderWater from './shaders/water/fragmentShader.glsl';
 
 import SceneInit from './lib/SceneInit';
 
@@ -46,28 +49,11 @@ function App() {
     const sky = new THREE.Mesh( skyGeo, skyMat );
     test.scene.add(sky);
 
-    function vertexShader() {
-      return `
-          varying float z;
-          uniform float u_time;
-          void main() {
-            z = (cos(position.y + u_time) + sin(position.x + u_time)) / 4.0;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position.x, position.y, z + position.z, 1.0);
-          }
-        `;
-    }
-    function fragmentShader() {
-      return `
-          void main() {
-            gl_FragColor = vec4(1, 0, 0, 1);
-          }
-        `;
-    }
     const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
     const material = new THREE.ShaderMaterial({
       uniforms: test.uniforms,
-      fragmentShader: fragmentShader(),
-      vertexShader: vertexShader(),
+      fragmentShader: fragmentShaderWater,
+      vertexShader: vertexShaderWater,
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;
