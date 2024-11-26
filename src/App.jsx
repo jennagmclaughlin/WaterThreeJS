@@ -46,17 +46,17 @@ function App() {
       side: THREE.BackSide
     } );
 
-    const sky = new THREE.Mesh( skyGeo, skyMat );
+    const sky = new THREE.Mesh(skyGeo, skyMat);
     test.scene.add(sky);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1, 1, 1, 1);
+    const geometry = new THREE.BoxGeometry(24, 4, 24, 24, 4, 24);
     const material = new THREE.ShaderMaterial({
       uniforms: test.uniforms,
       fragmentShader: fragmentShaderWater,
       vertexShader: vertexShaderWater,
     });
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = Math.PI / 2;
+    mesh.rotation.y = Math.PI / 2; // rotates so we can see side by default
     test.scene.add(mesh);
   }, []);
 
