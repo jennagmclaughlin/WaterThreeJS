@@ -71,8 +71,14 @@ export default class SceneInit {
     // NOTE: Declare uniforms to pass into glsl shaders.
     this.uniforms = {
       u_time: { type: 'f', value: 1.0 },
-      colorB: { type: 'vec3', value: new THREE.Color(0xfff000) },
-      colorA: { type: 'vec3', value: new THREE.Color(0xffffff) },
+      size: { type: 'f', value: 3 },
+      flow_speed: { type: 'f', value: 0.01 },
+      flow_strength: { type: 'f', value: 0.007 },
+      foam_distance: { type: 'f', value: 1.5 },
+      choppiness: { type: 'f', value: 0.1 },
+      water_color: { type: 'vec3', value: new THREE.Color(0x0081FF) },
+      light_foam_color: { type: 'vec3', value: new THREE.Color(0xEBEEF5) },
+      dark_foam_color: { type: 'vec3', value: new THREE.Color(0x0081FF) },
     };
   }
 

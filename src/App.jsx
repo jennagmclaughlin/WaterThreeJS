@@ -7,6 +7,9 @@ import fragmentShaderSky from './shaders/sky/fragmentShader.glsl';
 import vertexShaderWater from './shaders/water/vertexShader.glsl';
 import fragmentShaderWater from './shaders/water/fragmentShader.glsl';
 
+import flowMap from './assets/FlowMap.png';
+import voronoi from './assets/Voronoi.png';
+
 import SceneInit from './lib/SceneInit';
 
 function App() {
@@ -21,12 +24,6 @@ function App() {
     hemisphere.position.set(0, 1, 0);
     test.scene.add(hemisphere);
 
-     // main light
-     const sun = new THREE.DirectionalLight(0xffffff, 2);
-     sun.position.set();
-     sun.castShadow = true;
-     test.scene.add(sun);
-
     const skyUniforms = {
       'topColor': { value: new THREE.Color( 0x0077ff ) },
       'bottomColor': { value: new THREE.Color( 0xffffff ) },
@@ -34,9 +31,6 @@ function App() {
       'exponent': { value: 0.6 }
     };
     skyUniforms[ 'topColor' ].value.copy( hemisphere.color );
-
-    test.scene.fog = new THREE.Fog(test.background, 1, 5000);
-    test.scene.fog.color.copy( skyUniforms[ 'bottomColor' ].value );
 
     const skyGeo = new THREE.SphereGeometry( 300, 100, 100 );
     const skyMat = new THREE.ShaderMaterial( {
@@ -49,14 +43,20 @@ function App() {
     const sky = new THREE.Mesh(skyGeo, skyMat);
     test.scene.add(sky);
 
-    const geometry = new THREE.BoxGeometry(24, 4, 24, 24, 4, 24);
+    // const waterUniforms = {
+      
+    // }
+
+    const geometry = new THREE.PlaneGeometry(12, 12, 12);
     const material = new THREE.ShaderMaterial({
       uniforms: test.uniforms,
       fragmentShader: fragmentShaderWater,
-      vertexShader: vertexShaderWater,
+      vertexShader: vertexShaderWater
     });
+    test.uniforms.flow_map = {value: new THREE.TextureLoader().load(flowMap)};
+    test.uniforms.voronoi = {value: new THREE.TextureLoader().load(voronoi)};
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.y = Math.PI / 2; // rotates so we can see side by default
+    mesh.rotation.y = - Math.PI / 4; // rotates so we can see side by default
     test.scene.add(mesh);
   }, []);
 
