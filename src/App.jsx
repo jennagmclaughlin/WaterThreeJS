@@ -8,7 +8,6 @@ import vertexShaderWater from './shaders/water/vertexShader.glsl';
 import fragmentShaderWater from './shaders/water/fragmentShader.glsl';
 
 import flowMap from './assets/FlowMap.png';
-import voronoi from './assets/Voronoi.png';
 
 import SceneInit from './lib/SceneInit';
 
@@ -43,18 +42,12 @@ function App() {
     const sky = new THREE.Mesh(skyGeo, skyMat);
     test.scene.add(sky);
 
-    // const waterUniforms = {
-      
-    // }
-
-    const geometry = new THREE.PlaneGeometry(12, 12, 12);
+    const geometry = new THREE.PlaneGeometry(16, 16, 16);
     const material = new THREE.ShaderMaterial({
       uniforms: test.uniforms,
       fragmentShader: fragmentShaderWater,
       vertexShader: vertexShaderWater
     });
-    test.uniforms.flow_map = {value: new THREE.TextureLoader().load(flowMap)};
-    test.uniforms.voronoi = {value: new THREE.TextureLoader().load(voronoi)};
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.y = - Math.PI / 4; // rotates so we can see side by default
     test.scene.add(mesh);

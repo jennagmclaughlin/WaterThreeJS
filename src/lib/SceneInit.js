@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import Stats from 'three/examples/jsm/libs/stats.module';
+import voronoi from '../assets/Voronoi.png';
 
 export default class SceneInit {
   constructor(canvasId) {
@@ -46,6 +47,7 @@ export default class SceneInit {
     document.body.appendChild(this.renderer.domElement);
 
     this.clock = new THREE.Clock();
+    this.clock.autoStart = true;
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.stats = Stats();
     document.body.appendChild(this.stats.dom);
@@ -68,17 +70,25 @@ export default class SceneInit {
     // this.loader = new THREE.TextureLoader();
     // this.scene.background = this.loader.load('./pics/space.jpeg');
 
+    // voronoi texture
+    let voronoiTexture = new THREE.TextureLoader().load(voronoi);
+    voronoiTexture.wrapS = THREE.RepeatWrapping;
+    voronoiTexture.wrapT = THREE.RepeatWrapping;
+
     // NOTE: Declare uniforms to pass into glsl shaders.
     this.uniforms = {
       u_time: { type: 'f', value: 1.0 },
-      size: { type: 'f', value: 3 },
-      flow_speed: { type: 'f', value: 0.01 },
+      move_factor: { type: 'f', value: 0.0 },
+      size: { type: 'f', value: 3.0 },
+      flow_speed: { type: 'f', value: 2.0 },
       flow_strength: { type: 'f', value: 0.007 },
       foam_distance: { type: 'f', value: 1.5 },
       choppiness: { type: 'f', value: 0.1 },
-      water_color: { type: 'vec3', value: new THREE.Color(0x0081FF) },
+      water_color: { type: 'vec3', value: new THREE.Color(0x0051da) },
       light_foam_color: { type: 'vec3', value: new THREE.Color(0xEBEEF5) },
       dark_foam_color: { type: 'vec3', value: new THREE.Color(0x0081FF) },
+      voronoi_texture: { value: voronoiTexture },
+      repeat: { value: new THREE.Vector2(2, 1) } // handles repeat of voronoi
     };
   }
 

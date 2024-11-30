@@ -7,7 +7,6 @@ Created by [Jenna McLaughlin](https://github.com/jennagmclaughlin) and [Cameron 
 Inspired by The Legend of Zelda: The Wind Waker.
 
 ### To-Do
-- Mix water colors with voronoi
 - Create depth in water
 - Better waves
 
