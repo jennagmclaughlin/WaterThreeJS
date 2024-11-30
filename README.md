@@ -8,6 +8,7 @@ Inspired by The Legend of Zelda: The Wind Waker.
 
 ### To-Do
 - Create depth in water
+- Make voronoi distorted/look like it's moving along x
 - Better waves
 
 ### Resources
