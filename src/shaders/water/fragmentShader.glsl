@@ -11,12 +11,14 @@ uniform vec2 repeat;
 varying vec2 vUv;
 varying vec3 vNormal;
 varying vec3 vPositionNormal;
-varying vec3 pos;
 
 in vec2 textureCoords;
 
 uniform sampler2D flow_map;
 uniform sampler2D voronoi_texture;
+
+uniform float t; // how far through animation
+const float maxRadius = 0.25; // max distortion 
 
 
 void main() {
@@ -28,15 +30,12 @@ void main() {
     // combine alphas
     float opacity = a * a2;
 
-    // vec4 water_color = vec4(0.0, 0.5071135, 1.0, 1.0);
-    // vec4 dark_foam_color = vec4(0.0, 0.19, 0.38, 1.0);
-    // vec4 light_foam_color = vec4(0.9, 0.9, 0.95, 1.0);
+    // vec2 distortion1 = (texture2D(voronoi_texture, vec2(textureCoords.x, textureCoords.y)).rg * 2.0 - 1.0) * flow_strength;
 
-    // // apply the distortion to the texture coordinates + multiply by wave size
+    // // // apply the distortion to the texture coordinates + multiply by wave size
     // vec2 distortedCoords = vUv + distortion1 * size;
-    // vec2 voronoiUV = vec2(0.1, 0.1);
-    // vec2 distortedVoronoi = voronoiUV + distortedCoords;
-    // vec4 voronoiColor = texture(voronoi_texture, distortedVoronoi);
+    // vec2 distortedVoronoi = opacity + distortedCoords;
+    // vec4 voronoiColor = texture2D(voronoi_texture, textureCoords);
 
     // // lerp/mix dark foam with voronoi
     // vec4 waterDarkMix = mix(water_color, dark_foam_color, 1.0);
