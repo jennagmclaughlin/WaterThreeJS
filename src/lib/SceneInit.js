@@ -79,16 +79,16 @@ export default class SceneInit {
     this.uniforms = {
       u_time: { type: 'f', value: 1.0 },
       move_factor: { type: 'f', value: 0.0 },
-      size: { type: 'f', value: 3.0 },
-      flow_speed: { type: 'f', value: 2.0 },
-      flow_strength: { type: 'f', value: 0.007 },
+      size: { type: 'f', value: 7.0 },
+      flow_speed: { type: 'f', value: 10.0 },
+      flow_strength: { type: 'f', value: 0.01 },
       foam_distance: { type: 'f', value: 1.5 },
       choppiness: { type: 'f', value: 0.1 },
       water_color: { type: 'vec3', value: new THREE.Color(0x0051da) },
       light_foam_color: { type: 'vec3', value: new THREE.Color(0xEBEEF5) },
       dark_foam_color: { type: 'vec3', value: new THREE.Color(0x0081FF) },
       voronoi_texture: { value: voronoiTexture },
-      repeat: { value: new THREE.Vector2(2, 1) } // handles repeat of voronoi
+      repeat: { value: new THREE.Vector2(4, 2) } // handles repeat of voronoi
     };
   }
 

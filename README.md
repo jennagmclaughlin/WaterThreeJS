@@ -7,9 +7,8 @@ Created by [Jenna McLaughlin](https://github.com/jennagmclaughlin) and [Cameron 
 Inspired by The Legend of Zelda: The Wind Waker.
 
 ### To-Do
-- Create depth in water
-- Make voronoi distorted/look like it's moving along x
-- Better waves
+- Create better wave distortion in vertex
+- Add rubber ducky!
 
 ### Resources
 - [OpenGL Water Tutorials](https://www.youtube.com/playlist?list=PLRIWtICgwaX23jiqVByUs0bqhnalNTNZh) by ThinMatrix

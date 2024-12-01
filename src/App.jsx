@@ -42,14 +42,14 @@ function App() {
     const sky = new THREE.Mesh(skyGeo, skyMat);
     test.scene.add(sky);
 
-    const geometry = new THREE.PlaneGeometry(16, 16, 16);
+    const geometry = new THREE.PlaneGeometry(32, 24, 16);
     const material = new THREE.ShaderMaterial({
       uniforms: test.uniforms,
       fragmentShader: fragmentShaderWater,
-      vertexShader: vertexShaderWater
+      vertexShader: vertexShaderWater,
     });
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.y = - Math.PI / 4; // rotates so we can see side by default
+    mesh.rotation.y = - Math.PI / 8; // rotates so we can see side by default
     test.scene.add(mesh);
   }, []);
 
